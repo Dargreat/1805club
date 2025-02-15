@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club 1805 - Premier Nightclub in Iworoko Ekiti</title>
+    <meta name="description" content="Experience Ekiti's premier nightlife at Club 1805. Enjoy state-of-the-art sound, VIP lounges, and unforgettable events in Iworoko Ekiti.">
+    <meta name="keywords" content="nightclub Ekiti, Club 1805, VIP lounge Iworoko, best club Ekiti, nightlife Nigeria">
+    <meta property="og:title" content="Club 1805 - Best Nightclub in Iworoko Ekiti">
+    <meta property="og:description" content="Premium nightlife experience with top DJs and luxury amenities at Club 1805">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">CLUB 1805</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reservation">Reservation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to Club 1805</h1>
+            <div class="typewriter">
+                <span>Where life is fun.</span>
+                <span>Where life is good.</span>
+                <span>Where life is great.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About 1805</h2>
+            <p>
+                As Ekiti's premier nightlife destination, Club 1805 offers an unmatched experience 
+                with state-of-the-art sound systems, mesmerizing light shows, and Nigeria's finest 
+                selection of beverages. Our venue features multiple themed areas, VIP lounges, and 
+                a massive dance floor that comes alive with top DJ performances.
+            </p>
+            <p>
+                Committed to safety and excellence, we maintain the highest standards to ensure 
+                every visit is exceptional. Whether you're celebrating or just enjoying the night, 
+                Club 1805 delivers unforgettable experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="grid">
+                <div class="gallery-item">
+                    <img src="hotel4.jpg" alt="Club Interior">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel1.jpg" alt="Luxury Lounge">
+                </div>
+                <div class="gallery-item">
+                    <img src="logohotel.jpg" alt="Night View">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel3.jpg" alt="VIP Section">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel.jpg" alt="Dance Floor">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel2.jpg" alt="Club Bar">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel3.jpg" alt="Event Space">
+                </div>
+                <div class="gallery-item">
+                    <img src="hotel4.jpg" alt="Outdoor Area">
+                </div>
+            </div>
+            <a href="gallery.html" class="see-more">
+                See More <span>&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+<section id="reservation" class="reservation">
+    <div class="container">
+        <h2>Reservations</h2>
+        <p>Let us know about your reservation</p>
+        <form class="reservation-form" id="reservationForm">
+            <!-- Date Input -->
+            <div class="form-group">
+                <label for="event-date">Select Date</label>
+                <input type="date" id="event-date" name="eventDate" required>
+            </div>
+
+            <!-- Number of Tables -->
+            <div class="form-group">
+                <label for="tables">Number of Tables</label>
+                <select id="tables" name="tables" required>
+                    <option value="">Select tables</option>
+                    <!-- Options 1-30 -->
+                    <script>
+                        // Generate table options (1-30)
+                        for (let i = 1; i <= 30; i++) {
+                            document.write(`<option value="${i}">${i} Table${i !== 1 ? 's' : ''}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <!-- Number of Guests -->
+            <div class="form-group">
+                <label for="guests">Number of Guests </label>
+                <select id="guests" name="guests" required>
+                    <option value="">Select guests</option>
+                    <!-- Options 1-100 -->
+                    <script>
+                        // Generate guest options (1-100)
+                        for (let i = 1; i <= 100; i++) {
+                            document.write(`<option value="${i}">${i} Guest${i !== 1 ? 's' : ''}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <!-- Time Selection -->
+            <div class="form-group">
+                <label>Preferred Time</label>
+                <div class="time-options">
+                    <label>
+                        <input type="radio" name="time" value="daytime" required> 
+                        Daytime (12 PM - 6 PM)
+                    </label>
+                    <label>
+                        <input type="radio" name="time" value="overnight" required> 
+                        Overnight (7 PM - 5 AM)
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit">Reserve</button>
+        </form>
+    </div>
+</section>
+
+    <!-- Locate Us Section -->
+    <section class="locate">
+        <div class="container">
+            <h2>Locate Us</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.123456789012!2d5.123456789012345!3d7.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDcnMjQuNCJOIDXCsDA3JzQxLjgiRQ!5e0!3m2!1sen!2sng!4v1234567890123"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Others Say About Us</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Club 1805 is the best nightlife spot in Ekiti! The music, drinks, and vibe are unmatched. I always have an amazing time here!"</p>
+                    <h3>John Doe</h3>
+                    <span>Regular Guest</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I celebrated my birthday at Club 1805, and it was unforgettable. The staff went above and beyond to make it special!"</p>
+                    <h3>Jane Smith</h3>
+                    <span>Birthday Celebrant</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The VIP lounge is my favorite spot. It's luxurious, private, and the service is top-notch. Highly recommend!"</p>
+                    <h3>Mike Johnson</h3>
+                    <span>VIP Guest</span>
+                </div>
+            </div>
+            <a href="reviews.html" class="see-more">
+                See More <span>&rarr;</span>
+    </a>
+        </div>
+    </section>
+
+    <!-- Review Section -->
+    <section class="review-section">
+        <div class="container">
+            <h2 class="review-heading">Drop a Review</h2>
+            <form class="review-form">
+                <div class="form-group">
+                    <input type="text" id="review-name" required>
+                    <label for="review-name">Your Name</label>
+                </div>
+                <div class="form-group radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="club-goer" name="user-type" required>
+                        <label for="club-goer">
+                            <span class="bubble"></span>
+                            Club Goer
+                        </label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="vip" name="user-type" required>
+                        <label for="vip">
+                            <span class="bubble"></span>
+                            VIP Guest
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea id="review" rows="4" required></textarea>
+                    <label for="review">Drop Your Review</label>
+                </div>
+                <button class="post-btn">
+                    Post Review
+                    <span class="sparkles">✨</span>
+                    <span class="flare"></span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>GET IN TOUCH ON WHATSAPP</h2>
+            </div>
+            <form class="contact-form" id="whatsappForm">
+                <input type="text" placeholder="Your Name" required id="name">
+                <input type="email" placeholder="Your Email" required id="email">
+                <textarea rows="5" placeholder="Your Message" required id="message"></textarea>
+                <button type="submit" class="submit-btn">SEND VIA WHATSAPP</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CLUB 1805</h3>
+                <p>Where night becomes legend</p>
+                <p>VIP Reservations: +234 816 895 1209</p>
+                <p>hrmanager@club1805.org</p>
+            </div>
+            <div class="footer-section">
+                <h3>QUICK LINKS</h3>
+                <a href="#gallery">Gallery</a>
+                <a href="#reservation">Reservation</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>FOLLOW US</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/club1805" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/club1805" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://tiktok.com/@club1805" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://twitter.com/club1805" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+                <h3 style="margin-top: 2rem;">OPENING HOURS</h3>
+                <p>Mon-Sat: 9AM - 5AM</p>
+                <p>Closed: Sunday</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Club 1805 - Crafting Nightlife Excellence</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
