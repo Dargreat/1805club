@@ -1,3 +1,6 @@
+const backendUrl = 'http://localhost:5000';
+
+
 // Toggle Sections
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.sidebar nav ul li a');
@@ -68,4 +71,68 @@ reservations.forEach(reservation => {
     <td>${reservation.status}</td>
   `;
   reservationTable.appendChild(row);
+});
+
+fetch(`${backendUrl}/reservations`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to fetch reservations");
+        }
+        return response.json();
+    })
+    .then(data => {
+        const reservationTable = document.querySelector(".reservation-table tbody");
+        if (!reservationTable) return;
+
+        reservationTable.innerHTML = "";
+
+        data.forEach(reservation => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${reservation.name}</td>
+                <td>${reservation.date}</td>
+                <td>${reservation.time}</td>
+                <td>${reservation.guests}</td>
+                <td>${reservation.status}</td>
+            `;
+            reservationTable.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching reservations:", error);
+    });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const uploadInput = document.getElementById("upload-input");
+
+  uploadInput.addEventListener("change", async function (event) {
+      const files = event.target.files;
+      if (files.length === 0) return;
+
+      const formData = new FormData();
+      for (const file of files) {
+          formData.append("image", file);
+      }
+
+      try {
+          const response = await fetch(`${backendUrl}/gallery`, {
+              method: "POST",
+              body: formData
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+              alert("Image uploaded successfully!");
+              console.log("Uploaded Image URL:", result.url);
+          } else {
+              alert("Image upload failed. " + (result.error || ""));
+          }
+      } catch (error) {
+          console.error("Error uploading image:", error);
+          alert("An error occurred while uploading. Please try again.");
+      }
+  });
 });
