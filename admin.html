@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -26,11 +27,11 @@
         <h2>Gallery Management</h2>
         <div class="upload-section">
           <input type="file" id="upload-input" accept="image/*" multiple>
-          <label for="upload-input" class="upload-btn">Upload Images</label>
+          <label for="upload-input" class="upload-btn">
+            <i class="fas fa-upload"></i> Upload Images
+          </label>
         </div>
-        <div class="gallery-grid">
-          <!-- Images will be dynamically added here -->
-        </div>
+        <div class="gallery-grid"></div>
       </section>
 
       <!-- Reservations Section -->
@@ -45,22 +46,25 @@
                 <th>Time</th>
                 <th>Guests</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Reservation data will be dynamically added here -->
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </section>
     </main>
   </div>
 
-  <!-- Modal for Image Preview -->
+  <!-- Image Preview Modal -->
   <div id="image-modal" class="modal">
     <span class="close-modal">&times;</span>
-    <img id="modal-image" src="" alt="Preview">
-    <button id="delete-image" class="delete-btn">Delete Image</button>
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="Preview">
+      <button id="delete-image" class="delete-btn">
+        <i class="fas fa-trash"></i> Delete Image
+      </button>
+    </div>
   </div>
 
   <script src="admin.js"></script>
