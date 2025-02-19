@@ -17,7 +17,7 @@ document.querySelectorAll('.sidebar nav a').forEach(link => {
 
 // Gallery Management
 const uploadInput = document.getElementById('upload-input');
-const galleryGrid = document.querySelector('.gallery-grid');
+const imageList = document.getElementById('image-list');
 const modal = document.getElementById('image-modal');
 const modalImage = document.getElementById('modal-image');
 const closeModal = document.querySelector('.close-modal');
@@ -32,25 +32,28 @@ uploadInput.addEventListener('change', async (e) => {
     
     const reader = new FileReader();
     reader.onload = (e) => {
-      const galleryItem = document.createElement('div');
-      galleryItem.className = 'gallery-item';
-      galleryItem.innerHTML = `
-        <img src="${e.target.result}" alt="Gallery Image">
-        <button class="delete-btn" onclick="deleteImage(this)">
-          <i class="fas fa-trash"></i>
-        </button>
+      // Create list item
+      const listItem = document.createElement('div');
+      listItem.className = 'image-list-item';
+      listItem.innerHTML = `
+        <div class="image-list-preview">
+          <img src="${e.target.result}" class="image-list-thumbnail" alt="Thumbnail">
+          <span class="image-list-name">${file.name}</span>
+        </div>
+        <div class="image-list-actions">
+          <button class="list-delete-btn" onclick="deleteImageFromList(this)">
+            <i class="fas fa-trash"></i>
+            Delete
+          </button>
+        </div>
       `;
       
-      galleryItem.querySelector('img').addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImage.src = e.target.result;
-      });
-
-      galleryGrid.appendChild(galleryItem);
+      imageList.appendChild(listItem);
     };
     reader.readAsDataURL(file);
   }
 
+  // Upload to backend
   try {
     const response = await fetch(`${backendUrl}/api/gallery`, {
       method: 'POST',
@@ -66,14 +69,16 @@ uploadInput.addEventListener('change', async (e) => {
   }
 });
 
-// Delete Image Function
-window.deleteImage = function(btn) {
+// Delete Image Function for List
+window.deleteImageFromList = function(btn) {
   if (confirm('Are you sure you want to delete this image?')) {
-    const galleryItem = btn.closest('.gallery-item');
-    const imageSrc = galleryItem.querySelector('img').src;
+    const listItem = btn.closest('.image-list-item');
+    const imageSrc = listItem.querySelector('img').src;
 
-    galleryItem.remove();
+    // Remove from UI
+    listItem.remove();
 
+    // Delete from backend
     fetch(`${backendUrl}/api/gallery`, {
       method: 'DELETE',
       headers: {
@@ -103,25 +108,6 @@ window.onclick = (e) => {
   }
 };
 
-// Delete Image in Modal
-document.getElementById('delete-image').addEventListener('click', () => {
-  const imageUrl = modalImage.src;
-  const galleryItem = document.querySelector(`.gallery-item img[src="${imageUrl}"]`)?.closest('.gallery-item');
-  
-  if (galleryItem) {
-    galleryItem.remove();
-    modal.style.display = 'none';
-    
-    fetch(`${backendUrl}/api/gallery`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ imageUrl })
-    });
-  }
-});
-
 // Reservation Data Handling
 fetch(`${backendUrl}/api/reservations`)
   .then(response => response.json())
@@ -135,7 +121,7 @@ fetch(`${backendUrl}/api/reservations`)
         <td>${reservation.guests}</td>
         <td><span class="status">${reservation.status}</span></td>
         <td>
-          <button class="delete-btn-sm" onclick="deleteReservation('${reservation._id}')">
+          <button class="list-delete-btn" onclick="deleteReservation('${reservation._id}')">
             <i class="fas fa-trash"></i>
           </button>
         </td>
