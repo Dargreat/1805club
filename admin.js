@@ -1,140 +1,158 @@
 const backendUrl = 'https://1806clubbackend.vercel.app';
 
-
-// Toggle Sections
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.sidebar nav ul li a');
-
-navLinks.forEach(link => {
+// Section Toggling
+document.querySelectorAll('.sidebar nav a').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    sections.forEach(section => section.classList.remove('active'));
-    target.classList.add('active');
-    navLinks.forEach(navLink => navLink.classList.remove('active'));
+    const targetId = link.getAttribute('href');
+    
+    document.querySelectorAll('.section, .sidebar nav a').forEach(el => {
+      el.classList.remove('active');
+    });
+
+    document.querySelector(targetId).classList.add('active');
     link.classList.add('active');
   });
 });
 
-// Image Upload and Gallery Management
+// Gallery Management
 const uploadInput = document.getElementById('upload-input');
 const galleryGrid = document.querySelector('.gallery-grid');
 const modal = document.getElementById('image-modal');
 const modalImage = document.getElementById('modal-image');
 const closeModal = document.querySelector('.close-modal');
-const deleteImageBtn = document.getElementById('delete-image');
 
-uploadInput.addEventListener('change', (e) => {
+// Image Upload Handler
+uploadInput.addEventListener('change', async (e) => {
   const files = e.target.files;
+  const formData = new FormData();
+
   for (const file of files) {
+    formData.append('images', file);
+    
     const reader = new FileReader();
     reader.onload = (e) => {
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      img.addEventListener('click', () => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      galleryItem.innerHTML = `
+        <img src="${e.target.result}" alt="Gallery Image">
+        <button class="delete-btn" onclick="deleteImage(this)">
+          <i class="fas fa-trash"></i>
+        </button>
+      `;
+      
+      galleryItem.querySelector('img').addEventListener('click', () => {
         modal.style.display = 'flex';
-        modalImage.src = img.src;
+        modalImage.src = e.target.result;
       });
-      galleryGrid.appendChild(img);
+
+      galleryGrid.appendChild(galleryItem);
     };
     reader.readAsDataURL(file);
   }
+
+  try {
+    const response = await fetch(`${backendUrl}/api/gallery`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) throw new Error('Upload failed');
+    const data = await response.json();
+    console.log('Upload successful:', data);
+  } catch (error) {
+    console.error('Upload error:', error);
+    alert('Error uploading images');
+  }
 });
 
+// Delete Image Function
+window.deleteImage = function(btn) {
+  if (confirm('Are you sure you want to delete this image?')) {
+    const galleryItem = btn.closest('.gallery-item');
+    const imageSrc = galleryItem.querySelector('img').src;
+
+    galleryItem.remove();
+
+    fetch(`${backendUrl}/api/gallery`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ imageUrl: imageSrc })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Delete failed');
+      console.log('Image deleted successfully');
+    })
+    .catch(error => {
+      console.error('Delete error:', error);
+      alert('Error deleting image');
+    });
+  }
+};
+
+// Modal Controls
 closeModal.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
-deleteImageBtn.addEventListener('click', () => {
-  const imageToDelete = document.querySelector(`img[src="${modalImage.src}"]`);
-  if (imageToDelete) {
-    imageToDelete.remove();
+window.onclick = (e) => {
+  if (e.target === modal) {
     modal.style.display = 'none';
+  }
+};
+
+// Delete Image in Modal
+document.getElementById('delete-image').addEventListener('click', () => {
+  const imageUrl = modalImage.src;
+  const galleryItem = document.querySelector(`.gallery-item img[src="${imageUrl}"]`)?.closest('.gallery-item');
+  
+  if (galleryItem) {
+    galleryItem.remove();
+    modal.style.display = 'none';
+    
+    fetch(`${backendUrl}/api/gallery`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ imageUrl })
+    });
   }
 });
 
-// Reservation Data (Example)
-const reservations = [
-  { name: 'John Doe', date: '2023-10-15', time: '7:00 PM', guests: 4, status: 'Confirmed' },
-  { name: 'Jane Smith', date: '2023-10-16', time: '6:30 PM', guests: 2, status: 'Pending' },
-];
-
-const reservationTable = document.querySelector('.reservation-table tbody');
-
-reservations.forEach(reservation => {
-  console.log(reservation);
-  
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td>${reservation.name}</td>
-    <td>${reservation.date}</td>
-    <td>${reservation.preferredTime}</td>
-    <td>${reservation.guests}</td>
-    <td>${reservation.status}</td>
-  `;
-  reservationTable.appendChild(row);
-});
-
+// Reservation Data Handling
 fetch(`${backendUrl}/api/reservations`)
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.querySelector('.reservation-table tbody');
+    tbody.innerHTML = data.map(reservation => `
+      <tr>
+        <td>${reservation.name}</td>
+        <td>${new Date(reservation.date).toLocaleDateString()}</td>
+        <td>${reservation.preferredTime}</td>
+        <td>${reservation.guests}</td>
+        <td><span class="status">${reservation.status}</span></td>
+        <td>
+          <button class="delete-btn-sm" onclick="deleteReservation('${reservation._id}')">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  })
+  .catch(error => console.error('Error loading reservations:', error));
+
+window.deleteReservation = function(id) {
+  if (confirm('Delete this reservation?')) {
+    fetch(`${backendUrl}/api/reservations/${id}`, {
+      method: 'DELETE'
+    })
     .then(response => {
-        if (!response.ok) {
-            throw new Error("Failed to fetch reservations");
-        }
-        return response.json();
-    })
-    .then(data => {
-        const reservationTable = document.querySelector(".reservation-table tbody");
-        if (!reservationTable) return;
-
-        reservationTable.innerHTML = "";
-
-        data.forEach(reservation => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${reservation.name}</td>
-                <td>${reservation.date}</td>
-                <td>${reservation.preferredTime}</td>
-                <td>${reservation.guests}</td>
-                <td>${reservation.status}</td>
-            `;
-            reservationTable.appendChild(row);
-        });
-    })
-    .catch(error => {
-        console.error("Error fetching reservations:", error);
+      if (response.ok) {
+        document.querySelector(`tr[data-id="${id}"]`)?.remove();
+      }
     });
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const uploadInput = document.getElementById("upload-input");
-
-  uploadInput.addEventListener("change", async function (event) {
-      const files = event.target.files;
-      if (files.length === 0) return;
-
-      const formData = new FormData();
-      for (const file of files) {
-          formData.append("image", file);
-      }
-
-      try {
-          const response = await fetch(`${backendUrl}/api/gallery`, {
-              method: "POST",
-              body: formData
-          });
-
-          const result = await response.json();
-
-          if (response.ok) {
-              alert("Image uploaded successfully!");
-              console.log("Uploaded Image URL:", result.url);
-          } else {
-              alert("Image upload failed. " + (result.error || ""));
-          }
-      } catch (error) {
-          console.error("Error uploading image:", error);
-          alert("An error occurred while uploading. Please try again.");
-      }
-  });
-});
+  }
+};
