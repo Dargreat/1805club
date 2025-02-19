@@ -70,8 +70,6 @@
         <div class="container">
             <h2>Gallery</h2>
             <div class="grid">
-
-
                 <div class="gallery-item">
                     <img src="hotel4.jpg" alt="Outdoor Area">
                 </div>
@@ -82,12 +80,18 @@
         </div>
     </section>
 
-    <!-- Reservation Section -->
+    <!-- Modified Reservation Section -->
     <section id="reservation" class="reservation">
         <div class="container">
             <h2>Reservations</h2>
             <p>Let us know about your reservation</p>
             <form class="reservation-form" id="reservationForm">
+                <!-- Added Name Input -->
+                <div class="form-group">
+                    <label for="reservation-name">Your Name</label>
+                    <input type="text" id="reservation-name" name="name" required>
+                </div>
+
                 <!-- Date Input -->
                 <div class="form-group">
                     <label for="event-date">Select Date</label>
@@ -99,7 +103,6 @@
                     <label for="tables">Number of Tables</label>
                     <select id="tables" name="tables" required>
                         <option value="">Select tables</option>
-                        <!-- Options 1-30 -->
                         <script>
                             // Generate table options (1-30)
                             for (let i = 1; i <= 30; i++) {
@@ -114,7 +117,6 @@
                     <label for="guests">Number of Guests </label>
                     <select id="guests" name="guests" required>
                         <option value="">Select guests</option>
-                        <!-- Options 1-100 -->
                         <script>
                             // Generate guest options (1-100)
                             for (let i = 1; i <= 100; i++) {
@@ -187,7 +189,7 @@
         </div>
     </section>
 
-    <!-- Review Section -->
+    <!-- Modified Review Section -->
     <section class="review-section">
         <div class="container">
             <h2 class="review-heading">Drop a Review</h2>
@@ -196,22 +198,9 @@
                     <input type="text" id="review-name" name="name" required>
                     <label for="review-name">Your Name</label>
                 </div>
-                <div class="form-group radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="club-goer" value="club-goer" name="userType" required>
-                        <label for="club-goer">
-                            <span class="bubble"></span>
-                            Club Goer
-                        </label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="vip" value="vip" name="userType" required>
-                        <label for="vip">
-                            <span class="bubble"></span>
-                            VIP Guest
-                        </label>
-                    </div>
-                </div>
+                
+                <!-- Removed Radio Buttons Section -->
+                
                 <div class="form-group">
                     <textarea id="review" name="review" rows="4" required></textarea>
                     <label for="review">Drop Your Review</label>
@@ -273,3 +262,6 @@
         </div>
     </footer>
     <script src="index.js"></script>
+</body>
+
+</html>
