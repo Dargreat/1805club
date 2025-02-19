@@ -62,18 +62,20 @@ const reservations = [
 const reservationTable = document.querySelector('.reservation-table tbody');
 
 reservations.forEach(reservation => {
+  console.log(reservation);
+  
   const row = document.createElement('tr');
   row.innerHTML = `
     <td>${reservation.name}</td>
     <td>${reservation.date}</td>
-    <td>${reservation.time}</td>
+    <td>${reservation.preferredTime}</td>
     <td>${reservation.guests}</td>
     <td>${reservation.status}</td>
   `;
   reservationTable.appendChild(row);
 });
 
-fetch(`${backendUrl}/reservations`)
+fetch(`${backendUrl}/api/reservations`)
     .then(response => {
         if (!response.ok) {
             throw new Error("Failed to fetch reservations");
@@ -91,7 +93,7 @@ fetch(`${backendUrl}/reservations`)
             row.innerHTML = `
                 <td>${reservation.name}</td>
                 <td>${reservation.date}</td>
-                <td>${reservation.time}</td>
+                <td>${reservation.preferredTime}</td>
                 <td>${reservation.guests}</td>
                 <td>${reservation.status}</td>
             `;
@@ -117,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       try {
-          const response = await fetch(`${backendUrl}/gallery`, {
+          const response = await fetch(`${backendUrl}/api/gallery`, {
               method: "POST",
               body: formData
           });

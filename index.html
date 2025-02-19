@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club 1805 - Premier Nightclub in Iworoko Ekiti</title>
-    <meta name="description" content="Experience Ekiti's premier nightlife at Club 1805. Enjoy state-of-the-art sound, VIP lounges, and unforgettable events in Iworoko Ekiti.">
+    <meta name="description"
+        content="Experience Ekiti's premier nightlife at Club 1805. Enjoy state-of-the-art sound, VIP lounges, and unforgettable events in Iworoko Ekiti.">
     <meta name="keywords" content="nightclub Ekiti, Club 1805, VIP lounge Iworoko, best club Ekiti, nightlife Nigeria">
     <meta property="og:title" content="Club 1805 - Best Nightclub in Iworoko Ekiti">
-    <meta property="og:description" content="Premium nightlife experience with top DJs and luxury amenities at Club 1805">
+    <meta property="og:description"
+        content="Premium nightlife experience with top DJs and luxury amenities at Club 1805">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -48,14 +52,14 @@
         <div class="container">
             <h2>About 1805</h2>
             <p>
-                As Ekiti's premier nightlife destination, Club 1805 offers an unmatched experience 
-                with state-of-the-art sound systems, mesmerizing light shows, and Nigeria's finest 
-                selection of beverages. Our venue features multiple themed areas, VIP lounges, and 
+                As Ekiti's premier nightlife destination, Club 1805 offers an unmatched experience
+                with state-of-the-art sound systems, mesmerizing light shows, and Nigeria's finest
+                selection of beverages. Our venue features multiple themed areas, VIP lounges, and
                 a massive dance floor that comes alive with top DJ performances.
             </p>
             <p>
-                Committed to safety and excellence, we maintain the highest standards to ensure 
-                every visit is exceptional. Whether you're celebrating or just enjoying the night, 
+                Committed to safety and excellence, we maintain the highest standards to ensure
+                every visit is exceptional. Whether you're celebrating or just enjoying the night,
                 Club 1805 delivers unforgettable experiences.
             </p>
         </div>
@@ -66,8 +70,8 @@
         <div class="container">
             <h2>Gallery</h2>
             <div class="grid">
-                
-                
+
+
                 <div class="gallery-item">
                     <img src="hotel4.jpg" alt="Outdoor Area">
                 </div>
@@ -79,66 +83,66 @@
     </section>
 
     <!-- Reservation Section -->
-<section id="reservation" class="reservation">
-    <div class="container">
-        <h2>Reservations</h2>
-        <p>Let us know about your reservation</p>
-        <form class="reservation-form" id="reservationForm">
-            <!-- Date Input -->
-            <div class="form-group">
-                <label for="event-date">Select Date</label>
-                <input type="date" id="event-date" name="eventDate" required>
-            </div>
-
-            <!-- Number of Tables -->
-            <div class="form-group">
-                <label for="tables">Number of Tables</label>
-                <select id="tables" name="tables" required>
-                    <option value="">Select tables</option>
-                    <!-- Options 1-30 -->
-                    <script>
-                        // Generate table options (1-30)
-                        for (let i = 1; i <= 30; i++) {
-                            document.write(`<option value="${i}">${i} Table${i !== 1 ? 's' : ''}</option>`);
-                        }
-                    </script>
-                </select>
-            </div>
-
-            <!-- Number of Guests -->
-            <div class="form-group">
-                <label for="guests">Number of Guests </label>
-                <select id="guests" name="guests" required>
-                    <option value="">Select guests</option>
-                    <!-- Options 1-100 -->
-                    <script>
-                        // Generate guest options (1-100)
-                        for (let i = 1; i <= 100; i++) {
-                            document.write(`<option value="${i}">${i} Guest${i !== 1 ? 's' : ''}</option>`);
-                        }
-                    </script>
-                </select>
-            </div>
-
-            <!-- Time Selection -->
-            <div class="form-group">
-                <label>Preferred Time</label>
-                <div class="time-options">
-                    <label>
-                        <input type="radio" name="time" value="daytime" required> 
-                        Daytime
-                    </label>
-                    <label>
-                        <input type="radio" name="time" value="overnight" required> 
-                        Overnight
-                    </label>
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <h2>Reservations</h2>
+            <p>Let us know about your reservation</p>
+            <form class="reservation-form" id="reservationForm">
+                <!-- Date Input -->
+                <div class="form-group">
+                    <label for="event-date">Select Date</label>
+                    <input type="date" id="event-date" name="date" required>
                 </div>
-            </div>
 
-            <button type="submit">Reserve</button>
-        </form>
-    </div>
-</section>
+                <!-- Number of Tables -->
+                <div class="form-group">
+                    <label for="tables">Number of Tables</label>
+                    <select id="tables" name="tables" required>
+                        <option value="">Select tables</option>
+                        <!-- Options 1-30 -->
+                        <script>
+                            // Generate table options (1-30)
+                            for (let i = 1; i <= 30; i++) {
+                                document.write(`<option value="${i}">${i} Table${i !== 1 ? 's' : ''}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <!-- Number of Guests -->
+                <div class="form-group">
+                    <label for="guests">Number of Guests </label>
+                    <select id="guests" name="guests" required>
+                        <option value="">Select guests</option>
+                        <!-- Options 1-100 -->
+                        <script>
+                            // Generate guest options (1-100)
+                            for (let i = 1; i <= 100; i++) {
+                                document.write(`<option value="${i}">${i} Guest${i !== 1 ? 's' : ''}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="form-group">
+                    <label>Preferred Time</label>
+                    <div class="time-options">
+                        <label>
+                            <input type="radio" name="preferredTime" value="day" required>
+                            Daytime
+                        </label>
+                        <label>
+                            <input type="radio" name="preferredTime" value="night" required>
+                            Overnight
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit">Reserve</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Locate Us Section -->
     <section class="locate">
@@ -147,9 +151,7 @@
             <div class="map-container">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.123456789012!2d5.123456789012345!3d7.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDcnMjQuNCJOIDXCsDA3JzQxLjgiRQ!5e0!3m2!1sen!2sng!4v1234567890123"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
@@ -161,24 +163,27 @@
             <h2>What Others Say About Us</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p>"Club 1805 is the best nightlife spot in Ekiti! The music, drinks, and vibe are unmatched. I always have an amazing time here!"</p>
+                    <p>"Club 1805 is the best nightlife spot in Ekiti! The music, drinks, and vibe are unmatched. I
+                        always have an amazing time here!"</p>
                     <h3>John Doe</h3>
                     <span>Regular Guest</span>
                 </div>
                 <div class="testimonial-card">
-                    <p>"I celebrated my birthday at Club 1805, and it was unforgettable. The staff went above and beyond to make it special!"</p>
+                    <p>"I celebrated my birthday at Club 1805, and it was unforgettable. The staff went above and beyond
+                        to make it special!"</p>
                     <h3>Jane Smith</h3>
                     <span>Birthday Celebrant</span>
                 </div>
                 <div class="testimonial-card">
-                    <p>"The VIP lounge is my favorite spot. It's luxurious, private, and the service is top-notch. Highly recommend!"</p>
+                    <p>"The VIP lounge is my favorite spot. It's luxurious, private, and the service is top-notch.
+                        Highly recommend!"</p>
                     <h3>Mike Johnson</h3>
                     <span>VIP Guest</span>
                 </div>
             </div>
             <a href="reviews.html" class="see-more">
                 See More <span>&rarr;</span>
-    </a>
+            </a>
         </div>
     </section>
 
@@ -188,19 +193,19 @@
             <h2 class="review-heading">Drop a Review</h2>
             <form class="review-form">
                 <div class="form-group">
-                    <input type="text" id="review-name" required>
+                    <input type="text" id="review-name" name="name" required>
                     <label for="review-name">Your Name</label>
                 </div>
                 <div class="form-group radio-group">
                     <div class="radio-option">
-                        <input type="radio" id="club-goer" name="user-type" required>
+                        <input type="radio" id="club-goer" value="club-goer" name="userType" required>
                         <label for="club-goer">
                             <span class="bubble"></span>
                             Club Goer
                         </label>
                     </div>
                     <div class="radio-option">
-                        <input type="radio" id="vip" name="user-type" required>
+                        <input type="radio" id="vip" value="vip" name="userType" required>
                         <label for="vip">
                             <span class="bubble"></span>
                             VIP Guest
@@ -208,7 +213,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea id="review" rows="4" required></textarea>
+                    <textarea id="review" name="review" rows="4" required></textarea>
                     <label for="review">Drop Your Review</label>
                 </div>
                 <button class="post-btn">

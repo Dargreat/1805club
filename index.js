@@ -1,7 +1,7 @@
 const backendUrl = 'http://localhost:5000';
 
-document.addEventListener("DOMContentLoaded", function () {
-    fetchGallery();
+document.addEventListener("DOMContentLoaded", async function () {
+    await fetchGallery();
 
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const formObject = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
 
             try {
-                const response = await fetch(`${backendUrl}/reservations`, {
+                const response = await fetch(`${backendUrl}/api/reservations`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const formObject = Object.fromEntries(formData.entries()); // Convert FormData to JSON object
 
             try {
-                const response = await fetch(`${backendUrl}/reviews`, {
+                const response = await fetch(`${backendUrl}/api/reviews`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 // Fetch and display the most recent 3 reviews
-fetch(`${backendUrl}/reviews`) // Replace with your actual API URL
+fetch(`${backendUrl}/api/reviews`) // Replace with your actual API URL
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch reviews');
@@ -138,19 +138,23 @@ fetch(`${backendUrl}/reviews`) // Replace with your actual API URL
         return response.json();
     })
     .then(data => {
+        console.log(data);
+        
         const testimonialGrid = document.querySelector('.testimonial-grid');
         if (!testimonialGrid) return;
 
         testimonialGrid.innerHTML = ''; // Clear existing content
 
         data.slice(0, 3).forEach(review => {
+            console.log(review);
+            
             const reviewCard = document.createElement('div');
             reviewCard.classList.add('testimonial-card');
 
             reviewCard.innerHTML = `
-                <p>${review.comment}</p>
+                <p>${review.review}</p>
                 <h3>${review.name}</h3>
-                <span>${new Date(review.date).toLocaleDateString()}</span>
+                <span>${new Date(review.createdAt).toLocaleDateString()}</span>
             `;
 
             testimonialGrid.appendChild(reviewCard);
@@ -184,7 +188,7 @@ document.getElementById("reservationForm").addEventListener("submit", async (e) 
 
 async function fetchGallery() {
     try {
-        const response = await fetch(`${backendUrl}/gallery`); // Replace with your actual API URL
+        const response = await fetch(`${backendUrl}/api/gallery`); // Replace with your actual API URL
         const galleryItems = await response.json();
 
         const gridContainer = document.querySelector('.grid');
