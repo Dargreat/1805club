@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:5000';
+const backendUrl = 'https://1806clubbackend.vercel.app';
 
 document.addEventListener("DOMContentLoaded", async function () {
     await fetchGallery();

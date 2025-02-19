@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:5000';
+const backendUrl = 'https://1806clubbackend.vercel.app';
 
 fetch(`${backendUrl}/api/reviews`) // Replace with your actual API URL
     .then(response => {
