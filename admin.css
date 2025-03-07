@@ -293,7 +293,7 @@ th {
 
 #toast-container {
   position: absolute; /* Position absolutely within the upload-section */
-  top: 100%; /* Place it directly below the upload button */
+  top: 10%; /* Place it directly below the upload button */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
