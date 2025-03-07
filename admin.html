@@ -26,9 +26,15 @@
       <section id="gallery" class="section active">
         <h2>Gallery Management</h2>
         <div class="upload-section">
-          <input type="file" id="upload-input" accept="image/*" multiple>
-          <label for="upload-input" class="upload-btn">
-            <i class="fas fa-upload"></i> Upload Images
+          <!-- File Input (hidden) -->
+          <input type="file" id="upload-input" accept="image/*" multiple style="display: none;">
+          <!-- Upload Button -->
+          <button id="upload-button" class="upload-btn">
+            <i class="fas fa-upload"></i> Upload Selected Images
+          </button>
+          <!-- Label for File Input (optional, for better UX) -->
+          <label for="upload-input" class="file-input-label">
+            <i class="fas fa-folder-open"></i> Choose Images
           </label>
         </div>
 
@@ -56,7 +62,9 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <!-- Reservation rows will be dynamically added here -->
+            </tbody>
           </table>
         </div>
       </section>
