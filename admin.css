@@ -287,10 +287,17 @@ th {
 }
 
 /* Toast Notification Styles */
+.upload-section {
+  position: relative; /* Make the upload-section a positioning context */
+}
+
 #toast-container {
-  position: relative; /* Relative to the upload-section */
-  margin-top: 20px; /* Space between the upload button and the toast */
+  position: absolute; /* Position absolutely within the upload-section */
+  top: 100%; /* Place it directly below the upload button */
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 400px; /* Limit the width for better readability */
   text-align: center;
   z-index: 1000;
 }
