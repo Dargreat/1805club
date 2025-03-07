@@ -285,16 +285,14 @@ th {
   background: #ccc;
   cursor: not-allowed;
 }
+
 /* Toast Notification Styles */
 #toast-container {
-  position: fixed;
-  top: 200px; /* Adjust this value based on your layout */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  position: relative; /* Relative to the upload-section */
+  margin-top: 20px; /* Space between the upload button and the toast */
   width: 100%;
-  max-width: 400px; /* Limit the width for better readability */
   text-align: center;
+  z-index: 1000;
 }
 
 .toast {
