@@ -285,3 +285,45 @@ th {
   background: #ccc;
   cursor: not-allowed;
 }
+/* Toast Notification Styles */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.toast {
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  background-color: #4ecdc4; /* Default success color */
+  margin-bottom: 10px;
+  animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.toast.error {
+  background-color: #ff6b6b; /* Error color */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
