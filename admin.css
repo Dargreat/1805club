@@ -289,12 +289,11 @@ th {
 /* Toast Notification Styles */
 .upload-section {
   position: relative; /* Make the upload-section a positioning context */
-  min-height: 100px;
 }
 
 #toast-container {
   position: absolute; /* Position absolutely within the upload-section */
-  top: 10%; /* Place it directly below the upload button */
+  top: 10px; /* Place it directly below the upload button */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
