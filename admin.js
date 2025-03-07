@@ -205,3 +205,74 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (e.target === modal) modal.style.display = 'none';
   };
 });
+// Toast Notification Function
+function showToast(message, type = 'success') {
+  const toastContainer = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type === 'error' ? 'error' : ''}`;
+  toast.textContent = message;
+  toastContainer.appendChild(toast);
+
+  // Remove the toast after the animation ends
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
+// Example Usage in Your Code
+async function uploadImages() {
+  if (selectedFiles.length === 0) {
+    showToast('No files selected!', 'error');
+    return;
+  }
+
+  const formData = new FormData();
+  selectedFiles.forEach(file => formData.append('images', file));
+
+  try {
+    const response = await fetch(`${backendUrl}/api/gallery`, {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await handleResponse(response);
+    showToast('Images uploaded successfully!');
+
+    // Update with server-generated URLs
+    data.images.forEach((image, index) => {
+      const items = imageList.querySelectorAll('.image-list-item');
+      if (items[index]) {
+        items[index].querySelector('img').src = image.imageSrc;
+        items[index].dataset.imageUrl = image.imageSrc;
+      }
+    });
+
+    // Clear selection after successful upload
+    selectedFiles = [];
+    uploadInput.value = ''; // Clear file input
+    uploadButton.disabled = true;
+    uploadButton.classList.add('disabled');
+
+  } catch (error) {
+    showToast('Failed to upload images. Please try again.', 'error');
+    console.error('Upload error:', error);
+  }
+}
+
+// Example Usage for Reservations
+async function deleteReservation(id) {
+  if (!confirm('Delete this reservation?')) return;
+
+  try {
+    const response = await fetch(`${backendUrl}/api/reservations/${id}`, {
+      method: 'DELETE'
+    });
+
+    await handleResponse(response);
+    document.querySelector(`tr[data-id="${id}"]`)?.remove();
+    showToast('Reservation deleted successfully!');
+  } catch (error) {
+    showToast('Failed to delete reservation. Please try again.', 'error');
+    console.error('Delete reservation error:', error);
+  }
+}
