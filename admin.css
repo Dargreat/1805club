@@ -288,9 +288,13 @@ th {
 /* Toast Notification Styles */
 #toast-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  top: 200px; /* Adjust this value based on your layout */
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
+  width: 100%;
+  max-width: 400px; /* Limit the width for better readability */
+  text-align: center;
 }
 
 .toast {
@@ -301,7 +305,7 @@ th {
   margin-bottom: 10px;
   animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateY(-20px);
 }
 
 .toast.error {
@@ -310,11 +314,11 @@ th {
 
 @keyframes slideIn {
   from {
-    transform: translateX(100%);
+    transform: translateY(-20px);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
