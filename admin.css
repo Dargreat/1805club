@@ -249,3 +249,39 @@ th {
   background: #ff0000;
   transform: translateX(-50%) scale(1.05);
 }
+
+/* Style for the file input label */
+.file-input-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #4ecdc4;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-right: 10px;
+}
+
+.file-input-label:hover {
+  background: #45b7b0;
+}
+
+/* Style for the upload button */
+.upload-btn {
+  padding: 10px 20px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: #e55a5a;
+}
+
+.upload-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
